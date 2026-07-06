@@ -4,8 +4,6 @@ const path = require("path");
 
 //create a new client
 const create_Client = async(req,res)=>{
-    console.log("request revieved");
-    console.log(req.body);
     try{
         const {fullName, email, subject, message} = req.body;
         const client =  await Client.findOne({email})
@@ -78,22 +76,22 @@ const delete_id = async (req,res)=>{
         res.status(500).json({message:"internal server error",error:err.message})
     }
 }
-//send data to your email acount
+// send data to your email acount
 
 const send_email = async(req,res)=>{
     try{
         const {fullName, message, subject, email} = req.body;
 
-        const transporter = nodemailer.createTransport({
-            service:"gmail",
-            auth:{
-                user: process.env.
-            }
+        const transporter = nodemailer.createTransporter({
+            
         })
+
 
     }
     catch{
         res.status(500).json({message:"internal server error",error:err.message})
     }
 }
+
+
 module.exports={create_Client,get_message,get_id,delete_id};
